@@ -1,20 +1,20 @@
 # go-re
 
-Re Selector in Golang for Easier Use.
+golang实现的re选择器，使用更简单。
 
 [go-re](https://github.com/lizongying/go-re)
 
 [document](https://pkg.go.dev/github.com/lizongying/go-re)
 
-[中文](./README_CN.md)
+[english](./README.md)
 
-## Install
+## 安装
 
 ```
 go get github.com/lizongying/go-re
 ```
 
-## Usage
+## 用法
 
 ```go
 package main

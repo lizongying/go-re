@@ -10,7 +10,10 @@ type Selector struct {
 	str string
 }
 
-func (s *Selector) One(str string) string {
+func (s *Selector) One(str string) *Result {
+	return NewResult(regexp.MustCompile(str).FindString(s.str))
+}
+func (s *Selector) OneString(str string) string {
 	return regexp.MustCompile(str).FindString(s.str)
 }
 func (s *Selector) OneInt(str string) (out int, err error) {
@@ -290,7 +293,13 @@ func (s *Selector) MustOneSubUint64(str string) (out uint64) {
 	out, _ = utils.Str2Uint64(r[1])
 	return
 }
-func (s *Selector) Many(str string) []string {
+func (s *Selector) Many(str string) (results []*Result) {
+	for _, i := range regexp.MustCompile(str).FindAllString(s.str, -1) {
+		results = append(results, NewResult(i))
+	}
+	return
+}
+func (s *Selector) ManyString(str string) []string {
 	return regexp.MustCompile(str).FindAllString(s.str, -1)
 }
 func (s *Selector) ManyInt(str string) (out []int, err error) {
