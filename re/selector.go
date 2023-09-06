@@ -51,6 +51,10 @@ func (s *Selector) ManySelector(path string) (selectors []*Selector) {
 	return
 }
 
+func (s *Selector) String() string {
+	return s.str
+}
+
 // NewSelectorFromBytes selector from bytes
 func NewSelectorFromBytes(bs []byte) (selector *Selector, err error) {
 	if len(bs) == 0 {
