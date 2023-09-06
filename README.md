@@ -28,17 +28,18 @@ func main() {
 	html := `<html class="abc">....<div class="def">....</div><div class="gkl">123</div></html>`
 	s, _ := re.NewSelectorFromStr(html)
 
-	i, e := s.OneInt8(`\d+`)
+	i8 := s.One(`(\d+)`).Int8()
 	//123
-	fmt.Println(i, e)
+	fmt.Println(i8)
 
-	u64, e := s.OneUint64(`\d+`)
+	arr := s.Many(`(\d+)`)
 	//123
-	fmt.Println(u64, e)
+	fmt.Println(arr)
 
-	m := s.OneSub(`class="([^"]+)`)
-	//abc
-	fmt.Println(m, e)
+	m := s.ManySelector(`>([^<]+)(<)`)
+	n := m[4].One(`(\d+)`)
+	//123
+	fmt.Println(n)
 }
 
 ```
