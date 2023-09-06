@@ -41,10 +41,6 @@ func (s *Selector) OneSelector(path string) (selector *Selector) {
 
 func (s *Selector) ManySelector(path string) (selectors []*Selector) {
 	r := regexp.MustCompile(path).FindAllStringSubmatch(s.str, -1)
-	if len(r) < 2 {
-		return
-	}
-
 	for _, i := range r {
 		for _, ii := range i[1:] {
 			selectors = append(selectors, &Selector{
